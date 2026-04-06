@@ -1,0 +1,22 @@
+{
+  "name": "Classical Piano Book",
+  "short_name": "Piano Book",
+  "description": "A collection of classical piano pieces the whole world loves",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "blue",
+  "background_color": "blue",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
