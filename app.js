@@ -2632,5 +2632,5 @@ setInterval(() => {
     }
   });
 //}, 24 * 60 * 60 * 1000); // every 24 hours
-//}, 1 * 60 * 60 * 1000);  // every 1 hour
-}, 15 * 1000);           // every 15 seconds
+}, 1 * 60 * 60 * 1000);  // every 1 hour
+//}, 15 * 1000);           // every 15 seconds
