@@ -1,4 +1,5 @@
 const ALPHABETIC_INDEX = [
+  "A Comme Amour - Clyaderman",
   "A Love Dream - Liszt",
   "Air on the G String - Bach",
   "Arioso - Bach",
@@ -84,6 +85,10 @@ const ALPHABETIC_INDEX = [
 
 const ALPHABETIC_PAGES = [
   "about",
+  "A Comme Amour - Clyaderman",
+  "A Comme Amour - Clyaderman2",
+  "A Comme Amour - Clyaderman3",
+  "A Comme Amour - Clyaderman4",
   "A Love Dream - Liszt",
   "A Love Dream - Liszt2",
   "A Love Dream - Liszt3",

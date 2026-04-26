@@ -1,4 +1,4 @@
-var CACHE_NAME = 'PianoBook-cache-v2';
+var CACHE_NAME = 'PianoBook-cache-v1';
 
 // include all the files for offline access
 // do not include sw.js
@@ -487,59 +487,6 @@ self.addEventListener('activate', event => {
 });
 
 // Fetch resources from cache first then from server if not in cache
-/*
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-
-      try {
-        // 1. Try to load from cache first
-        const cachedResponse = await cache.match(event.request);
-        if (cachedResponse) return cachedResponse;
-
-        // 2. Not in cache so do a Network Fetch
-        const fetchResponse = await fetch(event.request);
-
-        // 3. Handle Partial Content (The 206 "Audio Stream" trigger)
-        if (fetchResponse.status === 206) {
-          // We create a clean URL object to ensure the background fetch 
-          // hits the exact same location as the original request.
-          const fullUrl = event.request.url;
-
-          // Perform the background download for the WHOLE file
-          // We don't 'await' this so the audio plays immediately
-          fetch(fullUrl)
-            .then((fullResponse) => {
-              if (fullResponse.status === 200) {
-                // IMPORTANT: Use the URL string as the key to avoid 
-                // any header-matching issues with Range requests
-                cache.put(fullUrl, fullResponse);
-                console.log("Audio cached successfully:", fullUrl);
-              }
-            })
-            .catch((err) => console.error("Background fetch failed:", err));
-
-          return fetchResponse;
-        }
-
-        // 4. Regular files (Status 200)
-        if (fetchResponse.status === 200) {
-          await cache.put(event.request, fetchResponse.clone());
-        }
-
-        return fetchResponse;
-
-      } catch (error) {
-        // If the network is down and not in cache, fallback
-        const fallback = await cache.match("index.html");
-        return fallback || new Response("Offline", { status: 503 });
-      }
-    })()
-  );
-});
-*/
-
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     (async () => {

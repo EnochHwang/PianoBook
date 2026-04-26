@@ -855,9 +855,9 @@ addBookmarkMenuOverlay.addEventListener("click", (e) => {
   }
 
   // clicking outside popup also closes
-  //if (e.target === addBookmarkMenuOverlay) {
-  //  addBookmarkMenuOverlay.style.display = "none";
-  //}
+  if (e.target === addBookmarkMenuOverlay) {
+    addBookmarkMenuOverlay.style.display = "none";
+  }
 });
     
 
@@ -2124,7 +2124,9 @@ function goImportMySongs() {
   const fileInput = document.getElementById('hiddenFileInput');
   const importSource = document.querySelector('input[name="importSource"]:checked').value;
 
-  if (importSource === 'file') {
+  // close the Input My Songs popup here????
+  
+  if (importSource === 'file') {  // user selected file or camera?
     // open the file picker
     fileInput.removeAttribute('capture');
     fileInput.setAttribute('accept', '.jpg, .jpeg, .png'); // Set your allowed types
