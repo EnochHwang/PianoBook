@@ -722,6 +722,13 @@ let isLongPressAction = false; // Flag to track if the touch was a long press
 
 // Handle longpress on songsheet to show add bookmark popup window
 swiperWrapper.addEventListener('pointerdown', (e) => {
+  // Block synthetic mouse events on mobile devices so mousedown doesn't re-fire
+  if (e.pointerType === 'touch') {
+    // We only prevent default if not zoomed, allowing standard gestures to behave normally
+    if (!(swiper.zoom && swiper.zoom.scale > 1) && e.target.tagName === 'IMG') {
+      e.preventDefault(); 
+    }
+  }
   if (!e.isPrimary) {	 // Ignore multi-touch
     clearTimeout(longPressTimer);
     longPressTimer = null;
@@ -743,6 +750,9 @@ swiperWrapper.addEventListener('pointerdown', (e) => {
   startX = e.clientX;
   startY = e.clientY;
   isLongPressAction = false; // Reset flag for this touch instance
+  
+  // Clear any dangling timer safely before starting a new one
+  if (longPressTimer) clearTimeout(longPressTimer);
   
   longPressTimer = setTimeout(() => {    
     // --- LONG PRESS SONG SHEET ---
@@ -780,7 +790,6 @@ swiperWrapper.addEventListener('pointermove', (e) => {
 });
 
 // Touch Move (Cancel if swiping) for tablet
-//// TODO Warning here: app.js:575 [Violation] Added non-passive event listener to a scroll-blocking 'touchmove' event. Consider marking event handler as 'passive' to make the page more responsive.
 swiperWrapper.addEventListener('touchmove', (e) => {
   if (longPressTimer) {
     // If finger moves more than 10px, it's a swipe/pan, not a hold
@@ -789,7 +798,7 @@ swiperWrapper.addEventListener('touchmove', (e) => {
       longPressTimer = null;
     }
   }
-}, {passive: false}); // this removed the warning but haven't tested for other side effects
+});
 
 // Touch End (Cancel) / Pointer Up - Handles short tap zone transitions
 swiperWrapper.addEventListener('pointerup', (e) => {
@@ -813,6 +822,14 @@ swiperWrapper.addEventListener('pointerup', (e) => {
       }
     }
     
+  }
+});
+
+// Global catch-all safety window tracker to kill hanging timers if pointer leaves context
+window.addEventListener('pointercancel', () => {
+  if (longPressTimer) {
+    clearTimeout(longPressTimer);
+    longPressTimer = null;
   }
 });
 
