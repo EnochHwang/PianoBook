@@ -801,12 +801,12 @@ swiperWrapper.addEventListener('pointerup', (e) => {
     // Handle short touch to turn page
     // Only execute if it wasn't a swipe and wasn't a long press
     if (!isLongPressAction && Math.abs(e.clientX - startX) < 10 && Math.abs(e.clientY - startY) < 10) {
-      const screenHeight = window.innerHeight;
-      const clickY = e.clientY;
+      //const screenHeight = window.innerHeight;
+      //const clickY = e.clientY;
       const screenWidth = window.innerWidth;
       const clickX = e.clientX;
-      // Click on the bottom 20% && left 30% of the screen
-      if ((clickY > screenHeight * 0.8) && (clickX < screenWidth * 0.3)) {
+      // Click on the left 30% of the screen
+      if (clickX < screenWidth * 0.3) {
         swiper.slidePrev();
       } else {
         swiper.slideNext();
