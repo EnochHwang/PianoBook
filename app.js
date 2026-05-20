@@ -714,6 +714,7 @@ const addBookmarkMenuOverlay = document.getElementById('addBookmarkMenuOverlay')
 let longPressTimer = null;
 let startX = 0;
 let startY = 0;
+let isLongPressAction = false; // Flag to track if the touch was a long press
 
 // Handle longpress on songsheet to show add bookmark popup window
 swiperWrapper.addEventListener('pointerdown', (e) => {
@@ -722,7 +723,7 @@ swiperWrapper.addEventListener('pointerdown', (e) => {
     longPressTimer = null;
     return;
   }
-    if (swiper.zoom && swiper.zoom.scale > 1) { // Ignore when zoomed in
+  if (swiper.zoom && swiper.zoom.scale > 1) { // Ignore when zoomed in
     clearTimeout(longPressTimer);
     longPressTimer = null;
     return;
@@ -737,9 +738,11 @@ swiperWrapper.addEventListener('pointerdown', (e) => {
 
   startX = e.clientX;
   startY = e.clientY;
+  isLongPressAction = false; // Reset flag for this touch instance
   
   longPressTimer = setTimeout(() => {    
     // --- LONG PRESS SONG SHEET ---
+    isLongPressAction = true; // Mark as a long press
     const index = swiper.activeIndex; // get the current active song index
     const songname = swiper.virtual.slides[index]; // get the page
     if (songname) {
@@ -751,7 +754,7 @@ swiperWrapper.addEventListener('pointerdown', (e) => {
       // should never get here
       console.error("Could not find song title at index:", index, songname);
     }
-  }, 700); // longpress hold time
+  }, 1000); // longpress hold time
 });
 
 // Prevent Default Context Menu
@@ -784,11 +787,34 @@ swiperWrapper.addEventListener('touchmove', (e) => {
   }
 }, {passive: false}); // this removed the warning but haven't tested for other side effects
 
-// Touch End (Cancel)
+// Touch End (Cancel) / Pointer Up - Handles short tap zone transitions
 swiperWrapper.addEventListener('pointerup', () => {
   if (longPressTimer) {
     clearTimeout(longPressTimer);
     longPressTimer = null;
+    
+    // --- SHORT PRESS SONG SHEET ---
+    // Handle short touch to turn page
+    // Only execute if it wasn't a swipe and wasn't a long press
+    if (!isLongPressAction && Math.abs(e.clientX - startX) < 10 && Math.abs(e.clientY - startY) < 10) {
+      const screenHeight = window.innerHeight;
+      const clickY = e.clientY;
+      // Click on the bottom 20% of the screen
+      if (clickY > screenHeight * 0.8) {
+        const screenWidth = window.innerWidth;
+        const clickX = e.clientX;
+        // Click on the right 30% of the screen -> Next Page
+        if (clickX > screenWidth * 0.7) {
+          swiper.slideNext();
+        } 
+        // Click on the left 30% of the screen -> Previous Page
+        else if (clickX < screenWidth * 0.3) {
+          swiper.slidePrev();
+        }
+        // Clicking the middle 20% does nothing (leaves area for menus if needed)
+      }
+    }
+    
   }
 });
 
