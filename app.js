@@ -19,7 +19,10 @@ window.addEventListener('load', async () => {
   if (true) {
     // --- FIRST TIME RUN ---
     console.log("First time run! Defaulting to index 0.");
-    syncSwiper();
+    // Swiper already built using ALPHABETIC_PAGES by default.
+    // Calling syncSwiper() here is redundant and forces a layout flash.
+    // Only call it if currentListPages differs from your default.
+    //syncSwiper();
     swiper.slideTo(0, 0);
     //localStorage.setItem(APP_NAME+"_swiperindex", 0);
     //localStorage.setItem(APP_NAME+"_currentListPages", JSON.stringify(currentListPages));        
