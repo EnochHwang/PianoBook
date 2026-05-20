@@ -805,8 +805,8 @@ swiperWrapper.addEventListener('pointerup', (e) => {
       //const clickY = e.clientY;
       const screenWidth = window.innerWidth;
       const clickX = e.clientX;
-      // Click on the left 30% of the screen
-      if (clickX < screenWidth * 0.3) {
+      // Click on the left 25% of the screen
+      if (clickX < screenWidth * 0.25) {
         swiper.slidePrev();
       } else {
         swiper.slideNext();
