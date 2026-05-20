@@ -19,11 +19,11 @@ window.addEventListener('load', async () => {
   if (true) {
     // --- FIRST TIME RUN ---
     console.log("First time run! Defaulting to index 0.");
-    // syncSwiper();  // doing this is too much
+    //syncSwiper();  // doing this is too much
     // initial load the swiper
-    swiper.virtual.slides = currentListPages;
-    if (swiper.virtual.cache) swiper.virtual.cache = {};
-    swiper.slideTo(0, 0);
+    //swiper.virtual.slides = currentListPages;
+    //if (swiper.virtual.cache) swiper.virtual.cache = {};
+    //swiper.slideTo(0, 0);
 
     //localStorage.setItem(APP_NAME+"_swiperindex", 0);
     //localStorage.setItem(APP_NAME+"_currentListPages", JSON.stringify(currentListPages));        
@@ -206,7 +206,7 @@ function syncSwiper() {
   swiper.update();          // Update the Swiper Layout
 }
 
-//syncSwiper();
+syncSwiper(); // do it here instead of at window.addEventListener('load', async () => {
 
 // After adding the slides, you MUST do a swiper update
 // The Swiper MUST be created here AFTER adding the slides
