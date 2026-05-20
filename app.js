@@ -758,7 +758,7 @@ swiperWrapper.addEventListener('pointerdown', (e) => {
       // should never get here
       console.error("Could not find song title at index:", index, songname);
     }
-  }, 1000); // longpress hold time
+  }, 800); // longpress hold time
 });
 
 // Prevent Default Context Menu
@@ -803,19 +803,13 @@ swiperWrapper.addEventListener('pointerup', (e) => {
     if (!isLongPressAction && Math.abs(e.clientX - startX) < 10 && Math.abs(e.clientY - startY) < 10) {
       const screenHeight = window.innerHeight;
       const clickY = e.clientY;
-      // Click on the bottom 20% of the screen
-      if (clickY > screenHeight * 0.8) {
-        const screenWidth = window.innerWidth;
-        const clickX = e.clientX;
-        // Click on the right 30% of the screen -> Next Page
-        if (clickX > screenWidth * 0.7) {
-          swiper.slideNext();
-        } 
-        // Click on the left 30% of the screen -> Previous Page
-        else if (clickX < screenWidth * 0.3) {
-          swiper.slidePrev();
-        }
-        // Clicking the middle 20% does nothing (leaves area for menus if needed)
+      const screenWidth = window.innerWidth;
+      const clickX = e.clientX;
+      // Click on the bottom 20% && left 30% of the screen
+      if ((clickY > screenHeight * 0.8) && (clickX < screenWidth * 0.3)) {
+        swiper.slidePrev();
+      } else {
+        swiper.slideNext();
       }
     }
     
