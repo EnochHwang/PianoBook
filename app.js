@@ -788,7 +788,7 @@ swiperWrapper.addEventListener('touchmove', (e) => {
 }, {passive: false}); // this removed the warning but haven't tested for other side effects
 
 // Touch End (Cancel) / Pointer Up - Handles short tap zone transitions
-swiperWrapper.addEventListener('pointerup', () => {
+swiperWrapper.addEventListener('pointerup', (e) => {
   if (longPressTimer) {
     clearTimeout(longPressTimer);
     longPressTimer = null;
