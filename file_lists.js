@@ -114,6 +114,7 @@ const ALPHABETIC_PAGES = [
   "Ballade Pour Adeline - Clyaderman",
   "Ballade Pour Adeline - Clyaderman2",
   "Ballade Pour Adeline - Clyaderman3",
+  "Ballade Pour Adeline - Clyaderman4",
   "Bridal March - Wagner",
   "Bridal March - Wagner2",
   "Clair de Lune - Debussy",
