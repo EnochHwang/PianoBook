@@ -278,8 +278,6 @@ const ALPHABETIC_PAGES = [
   "My Way - Frank Sinatra",
   "My Way - Frank Sinatra2",
   "My Way - Frank Sinatra3",
-  "My Way - Frank Sinatra4",
-  "My Way - Frank Sinatra5",
   "Nocturne Op 9 No 2 - Chopin",
   "Nocturne Op 9 No 2 - Chopin2",
   "Nocturne Op 9 No 2 - Chopin3",
