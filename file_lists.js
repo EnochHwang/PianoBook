@@ -208,7 +208,6 @@ const ALPHABETIC_PAGES = [
   "Intermezzo Op 118 No 2 - Brahms3",
   "Intermezzo Op 118 No 2 - Brahms4",
   "Intermezzo Op 118 No 2 - Brahms5",
-  "Intermezzo Op 118 No 2 - Brahms6",
   "Jesu, Joy of Man\'s Desiring - JS Bach",
   "Jesu, Joy of Man\'s Desiring - JS Bach2",
   "Jesu, Joy of Man\'s Desiring - JS Bach3",
