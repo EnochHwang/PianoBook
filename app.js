@@ -143,7 +143,7 @@ let swiper = new Swiper(".swiper", {
     }
   },
 
-  on: { // on given event blocks
+  on: { // on given following event blocks
     
     // --- SHORT PRESS PAGE TURN ---
     click: function(e) {
