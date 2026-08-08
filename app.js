@@ -1768,25 +1768,29 @@ const searchInput = document.getElementById('searchInput');
 const searchList = document.getElementById('searchList');
 
 searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    
-    // Hide standard lists when searching
-    numericList.style.display = 'none';
-    numericListSidebar.style.display = 'none';
-    alphabeticList.style.display = 'none';
-    alphabeticListSidebar.style.display = 'none';
-    bookmarkListContainer.style.display = 'none';
+  const query = e.target.value.toLowerCase().trim();
+  
+  // Hide standard lists when searching
+  numericList.style.display = 'none';
+  numericListSidebar.style.display = 'none';
+  alphabeticList.style.display = 'none';
+  alphabeticListSidebar.style.display = 'none';
+  bookmarkListContainer.style.display = 'none';
 
-    if (query === "") {
-        searchList.style.display = 'none';
-        return;
-    }
+  if (query === "") {
+    searchList.style.display = 'none';
+    return;
+  }
 
-    const filteredSongs = ALPHABETIC_INDEX.filter(title => 
-        title.toLowerCase().includes(query)
-    );
+  // initialize currentListPages and currentListIndex
+  //const isNumeric = /^\d+$/.test(query);  // search for name or number?
+  currentListPages = ALPHABETIC_PAGES;  // set current list
+  const currentListIndex = ALPHABETIC_INDEX;
+  const filteredSongs = currentListIndex.filter(title =>  
+    title.toLowerCase().includes(query)
+  );
 
-    renderSearchList(filteredSongs);
+  renderSearchList(filteredSongs);
 });
 
 // Create the search list with the matching songs
@@ -1804,14 +1808,6 @@ function renderSearchList(songs) {
   if (songs.length === 1) {
     const songname = songs[0];
     closeSearch();
-    // Ensure currentListPages is set to the full alphabetic list
-    currentListPages = ALPHABETIC_PAGES;
-    // Hide list containers and sidebars explicitly
-    //numericList.style.display = 'none';
-    //numericListSidebar.style.display = 'none';
-    //alphabeticList.style.display = 'none';
-    //alphabeticListSidebar.style.display = 'none';
-    //bookmarkListContainer.style.display = 'none';
     displaySong(songname, -1); // --- display the song. -1 for songindex means don't use the index
     return;
   }
