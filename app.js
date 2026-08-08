@@ -1772,10 +1772,10 @@ searchInput.addEventListener('input', (e) => {
     
     // Hide standard lists when searching
     numericList.style.display = 'none';
-    alphabeticList.style.display = 'none';
-    bookmarkListContainer.style.display = 'none';
     numericListSidebar.style.display = 'none';
+    alphabeticList.style.display = 'none';
     alphabeticListSidebar.style.display = 'none';
+    bookmarkListContainer.style.display = 'none';
 
     if (query === "") {
         searchList.style.display = 'none';
@@ -1804,6 +1804,14 @@ function renderSearchList(songs) {
   if (songs.length === 1) {
     const songname = songs[0];
     closeSearch();
+    // Ensure currentListPages is set to the full alphabetic list
+    currentListPages = ALPHABETIC_PAGES;
+    // Hide list containers and sidebars explicitly
+    //numericList.style.display = 'none';
+    //numericListSidebar.style.display = 'none';
+    //alphabeticList.style.display = 'none';
+    //alphabeticListSidebar.style.display = 'none';
+    //bookmarkListContainer.style.display = 'none';
     displaySong(songname, -1); // --- display the song. -1 for songindex means don't use the index
     return;
   }
