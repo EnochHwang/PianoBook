@@ -1,4 +1,4 @@
-var CACHE_NAME = 'PianoBook-cache-v1';
+var CACHE_NAME = 'PianoBook-cache-v2';
 
 // include all the files for offline access
 // do not include sw.js
